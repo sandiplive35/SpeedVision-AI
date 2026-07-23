@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "SpeedVision AI",
+    "slug": "speedvision-ai",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "scheme": "speedvision",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sandiplive35.speedvisionai",
+      "infoPlist": {
+        "NSCameraUsageDescription": "SpeedVision uses the camera to record traffic video for speed and violation analysis.",
+        "NSMicrophoneUsageDescription": "Audio is optional while recording traffic video.",
+        "NSPhotoLibraryUsageDescription": "SpeedVision needs access to videos you choose for analysis."
+      }
+    },
+    "android": {
+      "package": "com.sandiplive35.speedvisionai",
+      "permissions": ["CAMERA", "RECORD_AUDIO"],
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow SpeedVision AI to access your camera",
+          "microphonePermission": "Allow SpeedVision AI to access your microphone",
+          "recordAudioAndroid": true,
+          "barcodeScannerEnabled": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow SpeedVision AI to access videos selected for analysis",
+          "cameraPermission": "Allow SpeedVision AI to access your camera",
+          "microphonePermission": "Allow SpeedVision AI to access your microphone"
+        }
+      ]
+    ]
+  }
+}
