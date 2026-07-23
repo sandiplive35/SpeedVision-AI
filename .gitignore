@@ -1,0 +1,13 @@
+node_modules/
+.expo/
+dist/
+web-build/
+.env
+.env.local
+*.log
+.DS_Store
+backend/.venv/
+backend/__pycache__/
+backend/uploads/
+backend/outputs/
+*.pyc
