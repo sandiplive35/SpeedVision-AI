@@ -9,6 +9,7 @@ export async function analyzeVideo(
   settings: AnalysisRequestSettings,
 ): Promise<AnalysisResponse> {
   if (!API_URL) {
+    await new Promise((resolve) => setTimeout(resolve, 1100));
     return createDemoResponse(settings);
   }
 
@@ -20,6 +21,9 @@ export async function analyzeVideo(
   } as unknown as Blob);
   form.append('calibration_distance_m', String(settings.calibrationDistanceM));
   form.append('speed_limit_kmh', String(settings.speedLimitKmh));
+  form.append('country', settings.country);
+  form.append('traffic_direction', settings.trafficDirection);
+  form.append('plate_profile', settings.plateProfile);
 
   const response = await fetch(`${API_URL}/analyze`, {
     method: 'POST',
@@ -36,24 +40,33 @@ export async function analyzeVideo(
 
 export function createDemoResponse(settings: AnalysisRequestSettings): AnalysisResponse {
   const speedKmh = settings.speedLimitKmh + 18;
+  const plateByCountry: Record<string, string> = {
+    India: 'MH 12 AB 1234',
+    'United States': 'SVN 2048',
+    'United Kingdom': 'SV24 AI1',
+    Germany: 'SV AI 2048',
+    'United Arab Emirates': 'B 20481',
+  };
 
   return {
     jobId: `demo-${Date.now()}`,
     mode: 'demo',
     status: 'complete',
-    processingMs: 820,
+    processingMs: 1100,
     message: 'Demo result — connect the FastAPI backend for real video analysis.',
     detections: [
       {
-        id: 'vehicle-demo-1',
+        id: `vehicle-demo-${Date.now()}`,
         vehicleType: 'Car',
-        plateText: 'WB 24 AB 1234',
+        plateText: plateByCountry[settings.country] ?? 'SV 2048',
         speedKmh,
         confidence: 0.94,
         plateConfidence: 0.89,
         violation: 'overspeeding',
         reviewStatus: 'demo',
         capturedAt: new Date().toISOString(),
+        sourceName: 'Demo traffic video',
+        expectedErrorKmh: 4,
       },
     ],
   };
