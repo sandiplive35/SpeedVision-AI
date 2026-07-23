@@ -1,19 +1,22 @@
 {
   "expo": {
-    "name": "SpeedVision AI",
+    "name": "SpeedVision",
     "slug": "speedvision-ai",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "orientation": "portrait",
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "scheme": "speedvision",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.sandiplive35.speedvisionai",
       "infoPlist": {
-        "NSCameraUsageDescription": "SpeedVision uses the camera to record traffic video for speed and violation analysis.",
+        "NSCameraUsageDescription": "SpeedVision uses the camera only when you start a traffic detection session.",
         "NSMicrophoneUsageDescription": "Audio is optional while recording traffic video.",
-        "NSPhotoLibraryUsageDescription": "SpeedVision needs access to videos you choose for analysis."
+        "NSPhotoLibraryUsageDescription": "SpeedVision needs access to traffic videos you choose for analysis."
+      },
+      "config": {
+        "usesNonExemptEncryption": false
       }
     },
     "android": {
@@ -28,8 +31,8 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Allow SpeedVision AI to access your camera",
-          "microphonePermission": "Allow SpeedVision AI to access your microphone",
+          "cameraPermission": "Allow SpeedVision to access your camera",
+          "microphonePermission": "Allow SpeedVision to access your microphone",
           "recordAudioAndroid": true,
           "barcodeScannerEnabled": false
         }
@@ -37,9 +40,15 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Allow SpeedVision AI to access videos selected for analysis",
-          "cameraPermission": "Allow SpeedVision AI to access your camera",
-          "microphonePermission": "Allow SpeedVision AI to access your microphone"
+          "photosPermission": "Allow SpeedVision to access videos selected for analysis",
+          "cameraPermission": "Allow SpeedVision to access your camera",
+          "microphonePermission": "Allow SpeedVision to access your microphone"
+        }
+      ],
+      [
+        "expo-secure-store",
+        {
+          "configureAndroidBackup": true
         }
       ]
     ]
