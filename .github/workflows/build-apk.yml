@@ -13,6 +13,9 @@ on:
       - "package.json"
       - "tsconfig.json"
       - ".github/workflows/build-apk.yml"
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: read
